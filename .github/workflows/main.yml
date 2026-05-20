@@ -18,6 +18,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     
     strategy:
+      fail-fast: true
+      matrix:
+    
+    strategy:
       [cite_start]fail-fast: true
       matrix:
         [cite_start]os: [ubuntu-latest, windows-latest]
