@@ -22,11 +22,11 @@ jobs:
       matrix:
     
     strategy:
-      [cite_start]fail-fast: true
+      fail-fast: true
       matrix:
-        [cite_start]os: [ubuntu-latest, windows-latest]
-        [cite_start]node: ['18.x', '20.x']
-        [cite_start]mode: [debug, release]
+        os: [ubuntu-latest, windows-latest]
+        node: ['18.x', '20.x']
+        mode: [debug, release]
         
         # Parte 2: Exclusiones
         # Excluimos una combinación incompatible 
