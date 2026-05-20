@@ -6,8 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-# Parte 4: Concurrency
-# Si se hace un nuevo push a la misma rama, se cancela la ejecución anterior que esté en progreso para evitar ejecuciones redundantes[cite: 97, 98, 99].
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -20,29 +18,21 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-    
-    strategy:
-      fail-fast: true
-      matrix:
         os: [ubuntu-latest, windows-latest]
         node: ['18.x', '20.x']
         mode: [debug, release]
         
-        # Parte 2: Exclusiones
-        # Excluimos una combinación incompatible 
         exclude:
           - os: windows-latest
             node: '18.x'
             mode: debug
             
-        # Parte 3: Includes
-        # Añadimos variables especiales a una configuración específica que ya existe en la matriz [cite: 93, 94]
         include:
           - os: ubuntu-latest
             node: '20.x'
             mode: release
-            [cite_start]environment: production
-            [cite_start]extra_var: 'SUPER_SECRET'
+            environment: production
+            extra_var: 'SUPER_SECRET'
 
     steps:
       - name: Checkout del código
@@ -57,10 +47,9 @@ jobs:
         shell: bash
         run: |
           echo "Ejecutando en modo ${{ matrix.mode }}..."
-          sleep 5 # Simulamos un tiempo de ejecución
+          sleep 5
           echo "Tests pasados correctamente."
 
-      # Parte 5: Job summary dinámico generado en Markdown [cite: 101, 102, 110]
       - name: Generar Job Summary
         shell: bash 
         run: |
